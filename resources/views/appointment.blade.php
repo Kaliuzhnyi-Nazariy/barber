@@ -1,29 +1,3 @@
-<?php
-date_default_timezone_set('UTC');
-
-$currentHour = (int) date('G');
-$currentMinute = (int) date('i');
-
-$today = new DateTime();
-
-if ($currentHour > 16 || ($currentHour === 16 && $currentMinute >= 30)) {
-    $today->modify('+1 day');
-}
-
-$startOfWeek = clone $today;
-$weekDays = [];
-
-for ($i = 0; $i < 7; $i++) {
-    $weekDays[] = [
-        'weekday' => $startOfWeek->format('l'),
-        'date' => $startOfWeek->format('Y-m-d')
-    ];
-    $startOfWeek->modify('+1 day');
-}
-;
-
-?>
-
 <x-layout>
     <x-slot:title>appointment</x-slot:title>
 
@@ -36,78 +10,15 @@ for ($i = 0; $i < 7; $i++) {
             <h1 class="text-4xl lg:text-7xl font-extrabold">Barbershop</h1>
         </div>
 
-        <div class="p-4 border rounded-lg mt-4">
-            <h5 class="text-center uppercase font">Select a day</h5>
-
-            <ul class="grid md:grid-cols-4 lg:grid-cols-7 gap-2 w-full mt-2">
-                <?php foreach ($weekDays as $day): ?>
-                <li class="self-center py-3 border rounded-md flex flex-col items-center"
-                    onclick="handleDayClick('<?php    echo $day['date']; ?>')" id="<?php    echo $day['date'] ?>-li">
-                    <p><?php    echo $day['weekday'] ?></p>
-                    <p><?php    echo $day['date'] ?></p>
-                </li>
-                <?php endforeach; ?>
-            </ul>
-
-            <ul class="hidden grid-cols-3 md:grid-cols-6 mt-4" id="time_block">
-            </ul>
-        </div>
+        <x-appointment.timeblock />
 
         <div class="grid md:grid-cols-2 gap-5 p-4 border rounded-lg mt-4">
-            <div>
-                <h3 class="font-bold">Services:</h3>
-                <ul class="col-start-1 col-end-1 mt-2">
-                    <?php foreach ($services as $service): ?>
-                    <li class="flex items-center justify-between py-2  not-first:border-t"
-                        onclick="handleService({id: '<?php    echo $service['id'] ?>' , service: '<?php    echo $service['service']; ?>', price: <?php    echo $service['price']; ?> })">
-                        <h4>
-                            <?php    echo $service['service'] ?>
-                        </h4>
-                        <p class="text-(--dark-vanila) font-semibold">$<?php    echo $service['price'] ?> USD</p>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+
+            <x-appointment.services :services="$services" />
 
             <div class="h-px w-full bg-(--dark-vanila) md:hidden"></div>
 
-
-            <div class="md:col-start-2">
-                <p>
-                    <b>Date: </b>
-                    <span id="chosen_date">
-                        Date is not chosen
-                    </span>
-                </p>
-                <p>
-                    <b>Time: </b>
-                    <span id="chosen_time">
-                        Time is not chosen
-                    </span>
-                </p>
-
-                <h3 class="font-bold">Services:</h3>
-                <ul id="services_list">
-                    <li><small>No services</small></li>
-                </ul>
-
-                <div class="flex justify-between">
-                    <h4 class="font-bold">Total:</h4>
-                    <p id="total">$0 USD</p>
-                </div>
-
-                <form method="POST" action="/create/appointment" class="mt-4">
-                    @csrf
-                    <input type="hidden" id="input_date" name="date">
-                    <input type="hidden" id="input_time" name="time">
-                    <input type="hidden" id="input_services" name="services">
-
-                    <button type="submit" id="button" disabled
-                        class="w-full py-3 cursor-pointer bg-(--dark-vanila) disabled:opacity-50 disabled:cursor-not-allowed"
-                        onclick="">Make
-                        a reservation</button>
-                </form>
-            </div>
+            <x-appointment.form />
 
         </div>
     </div>
@@ -266,7 +177,6 @@ for ($i = 0; $i < 7; $i++) {
 
         document.getElementById('total').textContent = `$${totalPrice} USD`;
 
-        // console.log(totalPrice)
         validateForm()
     }
 
