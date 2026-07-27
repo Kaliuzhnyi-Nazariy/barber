@@ -9,8 +9,21 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen flex flex-col" style="margin: 0; box-sizing: border-box;">
-    {{ $slot }}
-</body>
+@if(session('success'))
+    <div class="toast toast-top toast-center">
+        <div class="alert alert-success animate-fade-out">
+            <span>{{ session('success') }}</span>
+        </div>
+    </div>
+@endif
+
+<body class="grow" style="margin: 0; box-sizing: border-box;">
+    {{--
+
+    <body class="min-h-screen flex flex-col" style="margin: 0; box-sizing: border-box;"> --}}
+        {{ $slot }}
+    </body>
+
+    <x-footer />
 
 </html>
