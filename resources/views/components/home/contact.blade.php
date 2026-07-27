@@ -10,8 +10,8 @@
     </div>
 
     <div class="flex flex-col items-center w-full">
-        <svg id="phone" class="size-12">
-            <use href="{{ asset('icons/phone.svg') }}" id="phone"></use>
+        <svg id="phone-icon" class="size-12">
+            <use href="{{ asset('icons/phone.svg') }}" id="phone-icon"></use>
         </svg>
         <h4 class="font-extrabold uppercase text-2xl mt-2">Phone</h4>
         <div class="w-16 h-1 25 bg-(--dark-vanila)"></div>
