@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 64);
+            $table->string('phone', 64);
+            $table->string('email', 128);
             $table->string('date', 64);
             $table->string('time', 5);
             $table->json('services');
