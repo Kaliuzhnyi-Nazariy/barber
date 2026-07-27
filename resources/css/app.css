@@ -9,10 +9,23 @@
     --font-sans: "Barlow", "Instrument Sans", ui-sans-serif, system-ui,
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+    --animate-fad-out: fade-out 4s ease-in-out forwards;
+}
+
+@keyframes fade-out {
+    0%,
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
 
 :root {
     --dark-vanila: #dec7a6;
+    --dark: #121212;
 }
 
 body {
@@ -25,8 +38,35 @@ h2 {
     text-transform: uppercase;
 }
 
+h3 {
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 @media screen and (min-width: 1024px) {
     h2 {
         font-size: 48px;
     }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+}
+
+input:focus,
+input:focus-within,
+textarea:focus,
+textarea:focus-within {
+    outline: none;
 }
