@@ -26,7 +26,8 @@ class ReservationController extends Controller
 
         $request->validate(['date' => 'required|date_format:Y-m-d']);
         // echo $request->date;
-        $bookedTime = Reservation::where('date', $request->date)->pluck('time')->toArray();
+        // $bookedTime = Reservation::where('date', $request->date)->pluck('time')->toArray();
+        $bookedTime = Reservation::query()->where('date', $request->date)->pluck('time')->toArray();
         return response()->json($bookedTime);
         // echo $request;
         // $bookedTimes = Reservation::where('date', $request->date)
@@ -50,12 +51,18 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'name' => 'required|string|max:64',
+            'email' => 'required|string|max:64',
+            'phone' => 'required|string|max:64',
             'date' => 'required|string|max:64',
             'time' => 'required|string|max:64',
             'services' => 'required'
         ]);
 
         Reservation::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
             'date' => $validated['date'],
             'time' => $validated['time'],
             'services' => $validated['services']
