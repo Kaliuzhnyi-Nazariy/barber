@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reservation extends Model
 {     
-    protected $fillable = ['date', 'time', 'services'];
+    protected $fillable = ['date', 'time', 'services', 'name', 'phone', 'email'];
 }
