@@ -28,6 +28,9 @@
     let chosenDate = null;
     let chosenTime = null;
     let selectedServices = [];
+    let name = '';
+    let email = '';
+    let phone = '';
 
     const allSlots = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'];
 
@@ -38,7 +41,11 @@
         const input_time = document.getElementById('input_time');
         const services_data = selectedServices.length !== 0;
 
-        if (input_date.value?.length !== 0 && input_time.value?.trim().length !== 0 && services_data) {
+        const isNameValid = name.trim().length > 0;
+        const isEmailValid = email.trim().length > 0;
+        const isPhoneValid = phone.trim().length > 0;
+
+        if (input_date.value?.length !== 0 && input_time.value?.trim().length !== 0 && services_data && isNameValid && isEmailValid && isPhoneValid) {
             button.removeAttribute('disabled')
         } else {
             button.setAttribute('disabled', true)
@@ -149,7 +156,7 @@
 
     }
 
-    function updateServicesUI() {
+    const updateServicesUI = () => {
         const list = document.getElementById('services_list');
 
         list.innerHTML = '';
@@ -180,7 +187,7 @@
         validateForm()
     }
 
-    function removeService(id) {
+    const removeService = (id) => {
         const serviceIndex = selectedServices.findIndex(s => s.id === id);
 
         if (serviceIndex === -1) {
@@ -202,7 +209,7 @@
         validateForm()
     }
 
-    function deleteService(id) {
+    const deleteService = (id) => {
         const targetId = String(id);
 
         selectedServices = selectedServices.filter(s => String(s.id) !== targetId);
@@ -212,6 +219,20 @@
         const list = document.getElementById('services_list');
 
         list.innerHTML = '<li><small>No services</small></li>';
+
+        validateForm();
+    }
+
+    const handleInput = (id) => {
+        const input = document.getElementById(id);
+
+        if (id == 'name') {
+            name = input.value;
+        } else if (id == 'email') {
+            email = input.value;
+        } else if (id == 'phone') {
+            phone = input.value;
+        }
 
         validateForm();
     }
