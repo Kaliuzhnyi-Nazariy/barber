@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index($viewName = 'appointment')
+    {        
         $services = Service::all();
 
-        return view('appointment', ['services' => $services]);
+       return view($viewName, ['services' => $services]); 
     }
 
     /**
