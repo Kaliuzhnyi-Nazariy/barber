@@ -1,0 +1,15 @@
+[dependencies]
+"php/php" = "=8.3.4" # Wersja PHP obsługująca rozszerzenia i sesje w Wasmer
+
+[fs]
+# Mapuje obecny katalog (.) z Twojego komputera jako /app wewnątrz WASM
+"/app" = "." 
+
+[[command]]
+name = "run"
+module = "php/php:php"
+runner = "wasi"
+
+[command.annotations.wasi]
+# Uruchamia wbudowany serwer PHP Laravela wskazujący na public/
+main-args = ["-t", "/app/public", "-S", "localhost:8080"]
