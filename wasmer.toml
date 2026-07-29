@@ -1,17 +1,31 @@
-[dependencies]
-"php/php" = "=8.3.4" # Wersja PHP obsługująca rozszerzenia i sesje w Wasmer
+name = "kaliuzhnyi-nazariy
+/barber"
+version = "0.1.0"
+description = ""
 
-[fs]
-"/app" = "." 
+"php/php" = "=8.3.4" 
 
-[[command]]
+"/app" = "."
+
 name = "run"
 module = "php/php:php"
 runner = "wasi"
 
-[command.annotations.wasi]
 main-args = [
-    "-r", "if(!file_exists('/app/database')) mkdir('/app/database', 0777, true); if(!file_exists('/app/database/database.sqlite')) touch('/app/database/database.sqlite');",
     "-t", "/app/public", 
-    "-S", "localhost:8080"
+    "-S", "0.0.0.0:8080"
 ]
+
+APP_ENV = "production"
+APP_KEY = "base64:NEGpCMovMjaI1KQE4Ct+vfQjBSM4Z9DakZWUaAskYEs=;
+DB_CONNECTION = "pgsql"
+DB_HOST = "db.ebdvmhbdxchbkkmgtpnn.supabase.com" 
+DB_PORT = "5432"
+DB_DATABASE = "db.ebdvmhbdxchbkkmgtpnn.supabase.co"
+DB_USERNAME = "postgres"
+DB_PASSWORD = "P4bd_Iwu@f0g"
+DB_SSLMODE = "require"
+
+SESSION_DRIVER = "cookie"
+CACHE_STORE = "array"
+LOG_CHANNEL = "stderr" 
