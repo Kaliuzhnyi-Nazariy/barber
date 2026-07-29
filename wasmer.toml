@@ -12,9 +12,9 @@ module = "php/php:php"
 runner = "wasi"
 
 main-args = [
-    "-t", "/app/public", 
+    "-t", "/app", 
     "-S", "0.0.0.0:8080",
-    "/app/server.php"
+    "/app/index.php"
 ]
 
 APP_ENV = "production"
