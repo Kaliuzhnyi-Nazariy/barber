@@ -13,7 +13,8 @@ runner = "wasi"
 
 main-args = [
     "-t", "/app/public", 
-    "-S", "0.0.0.0:8080"
+    "-S", "0.0.0.0:8080",
+    "/app/public/index.php"
 ]
 
 APP_ENV = "production"
