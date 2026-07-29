@@ -19,11 +19,10 @@ main-args = [
 APP_ENV = "production"
 APP_KEY = "base64:NEGpCMovMjaI1KQE4Ct+vfQjBSM4Z9DakZWUaAskYEs=;
 DB_CONNECTION = "pgsql"
-DB_HOST = "db.ebdvmhbdxchbkkmgtpnn.supabase.com" 
+DB_HOST = "db.ebdvmhbdxchbkkmgtpnn.supabase.co" 
 DB_PORT = "5432"
-DB_DATABASE = "db.ebdvmhbdxchbkkmgtpnn.supabase.co"
+DB_DATABASE = "postgres"
 DB_USERNAME = "postgres"
-DB_PASSWORD = "P4bd_Iwu@f0g"
 DB_SSLMODE = "require"
 
 SESSION_DRIVER = "cookie"
