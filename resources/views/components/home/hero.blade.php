@@ -9,7 +9,7 @@
 
             <div
                 class="flex flex-col md:flex-row gap-4 lg:gap-12 mt-8 justify-center text-base md:text-lg font-extrabold">
-                <a href="/book/appointment"
+                <a href="/appointment"
                     class="uppercase px-8 py-5 bg-(--dark-vanila) text-black border-2 border-transparent hover:bg-transparent hover:border-(--dark-vanila) hover:text-(--dark-vanila) focus:bg-transparent focus:border-(--dark-vanila) focus:text-(--dark-vanila) focus:outline-none transition-colors durantion-200 cursor-pointer">Book
                     an
                     Appointment</a>
